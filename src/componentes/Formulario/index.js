@@ -5,12 +5,10 @@ import ListaSuspensa from '../ListaSuspensa';
 import './Formulario.css';
 
 const Formulario = (props) => {
-    const times = ['Programação', 'Front-End', 'Data Science', 'Devops', 'UX e Design', 'Mobile', 'Inovação e Gestão'];
-
     const [nome, setNome] = useState('');
     const [cargo, setCargo] = useState('');
     const [imagem, setImagem] = useState('');
-    const [time, setTime] = useState('');
+    const [time, setTime] = useState(props.times[0]);
 
     const aoSalvar = (evento) => {
         evento.preventDefault();
@@ -23,7 +21,7 @@ const Formulario = (props) => {
         setNome('');
         setCargo('');
         setImagem('');
-        setTime('');    
+        setTime(props.times[0]);
     }
 
     return (
@@ -38,22 +36,23 @@ const Formulario = (props) => {
                 />
                 <CampoTexto
                     obrigatorio={true}
-                    label="Cargo" 
-                    placeholder="Digite seu cargo..." 
-                    valor={cargo} 
+                    label="Cargo"
+                    placeholder="Digite seu cargo..."
+                    valor={cargo}
                     aoAlterado={valor => setCargo(valor)}
                 />
-                <CampoTexto 
-                    obrigatorio={true} 
-                    label="Imagem" 
-                    placeholder="Digite o URL da sua imagem..." 
-                    valor={imagem} 
-                    aoAlterado={valor => setImagem(valor)} 
+                <CampoTexto
+                    obrigatorio={true}
+                    label="Imagem"
+                    placeholder="Digite o URL da sua imagem..."
+                    valor={imagem}
+                    aoAlterado={valor => setImagem(valor)}
                 />
-                <ListaSuspensa 
-                    obrigatorio={true} 
-                    label="Time" item={times} 
-                    valor={time} 
+                <ListaSuspensa
+                    obrigatorio={true}
+                    label="Time" 
+                    itens={props.times}
+                    valor={time}
                     aoAlterado={valor => setTime(valor)}
                 />
                 <Botao>
